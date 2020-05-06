@@ -1,0 +1,2 @@
+# ci
+study continuous integration
