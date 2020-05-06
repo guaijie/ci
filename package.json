@@ -1,0 +1,9 @@
+{
+  "name": "ci",
+  "version": "1.0.0",
+  "description": "study continuous integration",
+  "main": "index.js",
+  "repository": "https://github.com/guaijie/ci.git",
+  "author": "guaijie",
+  "license": "MIT"
+}
