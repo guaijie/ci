@@ -1,0 +1,17 @@
+{
+  "git.ignoreLimitWarning": true,
+
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "typescript.validate.enable": false,
+  "typescript.format.enable": false,
+  "editor.tabSize": 2,
+  "search.exclude": {
+    "**/node_modules": false
+  },
+
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
+}
