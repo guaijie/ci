@@ -1,5 +1,5 @@
 // import Layout from 'layouts/Layout';
-// import Login from 'components/Login';
+import Login from 'components/Login';
 import NotFound from 'components/NotFound';
 import { ComponentType } from 'react';
 
@@ -24,11 +24,11 @@ modules.keys().forEach(key => {
 });
 
 const routes: RouteNode[] = [
-  // {
-  //   path: '/login',
-  //   component: Login,
-  //   exact: true
-  // },
+  {
+    path: '/login',
+    component: Login,
+    exact: true
+  },
   {
     path: '/',
     // component: Layout,
