@@ -1,7 +1,7 @@
 import React from 'react';
 import { Result, Button } from 'antd';
 
-export default function() {
+export default function NotFound() {
   return (
     <Result
       status="404"

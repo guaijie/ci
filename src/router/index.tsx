@@ -3,25 +3,34 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  RouteComponentProps,
+  SwitchProps
 } from 'react-router-dom';
-import routes from './routes';
+import routes, { RouteNode } from './routes';
 import GlobalGuard from 'components/GlobalGuard';
 import { hot } from 'react-hot-loader/root';
 const supportsHistory = 'pushState' in window.history;
 const TITLE = document.title;
-const mapRoutes = (routes, prevProps = {}, switchProps = {}) => {
+const mapRoutes = (
+  routes: RouteNode[],
+  prevProps?: RouteComponentProps,
+  switchProps?: SwitchProps
+) => {
   return (
     <Switch {...switchProps}>
       {(routes || []).map((route, i) => {
-        let { routes, redirect, key, path, ...rest } = route;
-        let { match } = prevProps;
-        path = match ? match.path.replace(/^\/$/, '') + path : path;
-        if (redirect) {
-          let { match } = prevProps;
-          redirect = match
-            ? match.path.replace(/^\/$/, '') + redirect
-            : redirect;
+        let {
+          routes,
+          redirect: subRedirect,
+          key,
+          path: subPath,
+          ...rest
+        } = route;
+        let prevpath = prevProps?.match.path.replace(/\/$/, '');
+        let path = prevpath ? prevpath + subPath : subPath;
+        if (subRedirect) {
+          let redirect = prevpath ? prevpath + subRedirect : subRedirect;
           return (
             <Redirect
               key={key || i}
@@ -49,11 +58,7 @@ const mapRoutes = (routes, prevProps = {}, switchProps = {}) => {
                 }
                 if (component) {
                   const Component = component;
-                  return (
-                    <Component {...props} route={route}>
-                      {childRoutes}
-                    </Component>
-                  );
+                  return <Component {...props}>{childRoutes}</Component>;
                 } else {
                   return childRoutes;
                 }
