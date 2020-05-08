@@ -28,5 +28,7 @@ jobs:
 workflows:
   yarn-test-build:
     jobs:
-      - yarn-ci
       - yarn-build
+  yarn-ci:
+    jobs:
+      - yarn ci
