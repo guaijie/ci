@@ -6,7 +6,7 @@ jobs:
     executor:
       name: node/default
     steps:
-      - run: yarn danger ci
+      - run: npx danger ci
   yarn-test:
     executor:
       name: node/default
@@ -28,7 +28,5 @@ jobs:
 workflows:
   yarn-test-build:
     jobs:
-      - yarn-build
-  yarn-ci:
-    jobs:
       - yarn-ci
+      - yarn-build
