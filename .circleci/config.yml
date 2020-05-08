@@ -31,4 +31,4 @@ workflows:
       - yarn-build
   yarn-ci:
     jobs:
-      - yarn ci
+      - yarn-ci
