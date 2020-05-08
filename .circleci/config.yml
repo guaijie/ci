@@ -2,6 +2,16 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
+  yarn-ci:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run:
+              name: Danger
+              command: yarn danger ci
   yarn-test:
     executor:
       name: node/default
@@ -23,4 +33,5 @@ jobs:
 workflows:
   yarn-test-build:
     jobs:
+      - yarn-ci
       - yarn-build
