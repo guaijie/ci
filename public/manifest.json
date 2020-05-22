@@ -1,0 +1,27 @@
+{
+  "name": "react",
+  "short_name": "react",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#456798",
+  "description": "react app",
+  "orientation": "portrait-primary",
+  "theme_color": "#5eace0",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "logo256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ]
+}

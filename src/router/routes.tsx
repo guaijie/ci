@@ -35,14 +35,15 @@ const routes: RouteNode[] = [
     routes: [
       ...pageRoutes.filter(r => r.component),
       {
+        path: '/',
+        redirect: '/home',
+        exact: true
+      },
+      {
         path: '*',
         component: NotFound
       }
     ]
-  },
-  {
-    path: '*',
-    component: NotFound
   }
 ];
 
