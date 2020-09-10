@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input, Form } from 'antd';
 import './index.css';
 function Home() {
   return (
