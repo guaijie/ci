@@ -1,15 +1,20 @@
+# versions
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
+# orbs
+## orbs executors commands
+
+aliases:
+  - &docker
+    - image: circleci/openjdk:8-jdk-node-browsers
+
+# jobs
 jobs:
   yarn-ci:
-    executor:
-      name: node/default
+    docker: *docker
     steps:
       - run: npx danger ci
   yarn-test:
-    executor:
-      name: node/default
+    docker: *docker
     steps:
       - checkout
       - node/with-cache:
@@ -17,8 +22,7 @@ jobs:
             - run: yarn
             - run: yarn test
   yarn-build:
-    executor:
-      name: node/default
+    docker: *docker
     steps:
       - checkout
       - node/with-cache:
