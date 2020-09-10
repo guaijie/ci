@@ -30,7 +30,8 @@ jobs:
             - run: yarn
             - run: yarn build
 workflows:
-  yarn-test-build:
+  version: 2
+  stable:
     jobs:
       - yarn-ci
       - yarn-build
