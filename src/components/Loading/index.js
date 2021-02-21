@@ -1,7 +1,6 @@
-import React from 'react';
 import { Spin, Result, Button } from 'antd';
 import styles from './index.module.less';
-export default function(props) {
+export default function (props) {
   const { isLoading, error, retry } = props;
   if (isLoading) {
     return (
@@ -20,7 +19,7 @@ export default function(props) {
           </Button>,
           <Button key="retry" onClick={retry}>
             再试一次
-          </Button>
+          </Button>,
         ]}
       />
     );

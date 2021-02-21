@@ -1,11 +1,10 @@
-import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
   RouteComponentProps,
-  SwitchProps
+  SwitchProps,
 } from 'react-router-dom';
 import routes, { RouteNode } from './routes';
 import GlobalGuard from 'components/GlobalGuard';
@@ -20,17 +19,17 @@ const mapRoutes = (
   return (
     <Switch {...switchProps}>
       {(routes || []).map((route, i) => {
-        let {
+        const {
           routes,
           redirect: subRedirect,
           key,
           path: subPath,
           ...rest
         } = route;
-        let prevpath = prevProps?.match.path.replace(/\/$/, '');
-        let path = prevpath ? prevpath + subPath : subPath;
+        const prevpath = prevProps?.match.path.replace(/\/$/, '');
+        const path = prevpath ? prevpath + subPath : subPath;
         if (subRedirect) {
-          let redirect = prevpath ? prevpath + subRedirect : subRedirect;
+          const redirect = prevpath ? prevpath + subRedirect : subRedirect;
           return (
             <Redirect
               key={key || i}
@@ -40,17 +39,17 @@ const mapRoutes = (
             ></Redirect>
           );
         } else {
-          let { component, title, ...nextRest } = rest;
+          const { component, title, ...nextRest } = rest;
           return (
             <Route
               {...nextRest}
               path={path}
               key={key || i}
-              render={props => {
+              render={(props) => {
                 let childRoutes;
                 if (routes && routes.length > 0) {
                   childRoutes = mapRoutes(routes, props, {
-                    location: props.location
+                    location: props.location,
                   });
                 } else {
                   document.title = title || TITLE;

@@ -1,8 +1,5 @@
 {
   "git.ignoreLimitWarning": true,
-
-  "javascript.validate.enable": false,
-  "javascript.format.enable": false,
   "editor.tabSize": 2,
   "search.exclude": {
     "**/node_modules": false
@@ -10,7 +7,7 @@
 
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
   },
   "editor.tabCompletion": "on",
   "emmet.triggerExpansionOnTab": true,

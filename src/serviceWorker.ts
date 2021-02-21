@@ -15,7 +15,7 @@ type RegisterConfig = {
 
 export function register(config?: RegisterConfig) {
   if ('serviceWorker' in navigator) {
-    const url = new URL(process.env.PUBLIC_URL, window.location.href);
+    const url = new URL(process.env.PUBLIC_URL as string, window.location.href);
     if (url.origin !== window.location.origin) {
       return;
     }
@@ -44,7 +44,7 @@ export function register(config?: RegisterConfig) {
 function registerValidSW(swUrl: string, config?: RegisterConfig) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -62,7 +62,7 @@ function registerValidSW(swUrl: string, config?: RegisterConfig) {
               );
 
               // Execute callback
-              if (config && config!.onUpdate) {
+              if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
@@ -80,7 +80,7 @@ function registerValidSW(swUrl: string, config?: RegisterConfig) {
         };
       };
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error during service worker registration:', error);
     });
 }
@@ -90,10 +90,10 @@ function checkValidServiceWorker(swUrl: string, config?: RegisterConfig) {
   fetch(swUrl, {
     headers: {
       'Service-Worker': 'script',
-      'Content-Type': '	application/x-javascript'
-    }
+      'Content-Type': '	application/x-javascript',
+    },
   })
-    .then(response => {
+    .then((response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
       console.log(response, contentType);
@@ -102,7 +102,7 @@ function checkValidServiceWorker(swUrl: string, config?: RegisterConfig) {
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -122,10 +122,10 @@ function checkValidServiceWorker(swUrl: string, config?: RegisterConfig) {
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
-      .then(registration => {
+      .then((registration) => {
         registration.unregister();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error.message);
       });
   }
