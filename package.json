@@ -40,6 +40,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/webpack-env": "^1.16.0",
     "babel-plugin-import": "^1.13.0",
+    "craco-less": "^1.17.1",
     "danger": "^10.2.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",

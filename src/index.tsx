@@ -3,7 +3,7 @@ import App from 'router';
 import * as serviceWorker from 'serviceWorker';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-debugger;
+import 'index.less';
 ReactDOM.render(
   <ConfigProvider locale={zhCN}>
     <App />
