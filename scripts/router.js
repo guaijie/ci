@@ -3,19 +3,13 @@ import {
   Switch,
   Route,
   Redirect,
-  RouteComponentProps,
-  SwitchProps,
 } from 'react-router-dom';
-import routes, { RouteNode } from './routes';
+import routes from './routes';
 import GlobalGuard from 'components/GlobalGuard';
 // import { hot } from 'react-hot-loader/root';
 const supportsHistory = 'pushState' in window.history;
 const TITLE = document.title;
-const mapRoutes = (
-  routes: RouteNode[],
-  prevProps?: RouteComponentProps,
-  switchProps?: SwitchProps
-) => {
+const mapRoutes = (routes, prevProps, switchProps) => {
   return (
     <Switch {...switchProps}>
       {(routes || []).map((route, i) => {

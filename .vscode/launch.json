@@ -4,14 +4,20 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "node",
+      // "program": "node",
+      "args": ["${fileBasename}"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "debug",
-      "program": "${workspaceFolder}/scripts/start.js",
+      "program": "${workspaceFolder}/node_modules/@craco/craco/bin/craco.js",
+      "args": ["build"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": [
-        "<node_internals>/**",
-        "node_modules"
-      ]
+      "skipFiles": ["<node_internals>/**", "node_modules"]
     }
   ]
 }

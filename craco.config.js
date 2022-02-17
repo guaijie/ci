@@ -3,6 +3,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const { whenDev } = require('@craco/craco');
 const cracoLessPlugin = require('craco-less');
+const { resolve } = require('path');
 
 module.exports = {
   plugins: [
@@ -20,7 +21,7 @@ module.exports = {
   ],
   babel: {
     plugins: [
-      ...whenDev(() => ['react-hot-loader/babel'], []),
+      // ...whenDev(() => ['react-hot-loader/babel'], []),
       [
         'import',
         {
@@ -47,28 +48,70 @@ module.exports = {
     ],
   },
   webpack: {
-    alias: {
-      ...whenDev(() => ({
-        'react-dom': '@hot-loader/react-dom',
-      })),
-    },
+    // alias: {
+    //   ...whenDev(() => ({
+    //     'react-dom': '@hot-loader/react-dom',
+    //   })),
+    // },
     plugins: [
       ...whenDev(
         () => [
-          new BundleAnalyzerPlugin({
-            analyzerHost: 'localhost',
-            analyzerPort: '8080',
-            openAnalyzer: false,
-          }),
+          // new BundleAnalyzerPlugin({
+          //   analyzerHost: 'localhost',
+          //   analyzerPort: '8080',
+          //   openAnalyzer: false,
+          // }),
         ],
         []
       ),
     ],
-    configure: (webpackConfig, { env, paths: { appIndexJs } }) => {
-      if (env === 'development') {
-        webpackConfig.entry = ['react-hot-loader/patch', appIndexJs];
-      }
+    module: {
+      rules: [],
+    },
+    configure: (webpackConfig /* , { env } */) => {
+      // if (env === 'development') {
+      //   webpackConfig.entry = ['react-hot-loader/patch', appIndexJs];
+      // }
+      const options = webpackConfig.module.rules[1].oneOf[2].options;
+      webpackConfig.module.rules[1].oneOf.splice(
+        2,
+        0,
+        {
+          test: /\.worker\.(js|mjs|jsx|ts|tsx)$/,
+          use: [
+            { loader: require.resolve('worker-loader') },
+            {
+              loader: require.resolve('babel-loader'),
+              options,
+            },
+          ],
+        },
+        {
+          test: /\.?sw\.(js|mjs|jsx|ts|tsx)$/,
+          use: [
+            { loader: require.resolve('./loader/sw-loader') },
+            {
+              loader: require.resolve('babel-loader'),
+              options,
+            },
+          ],
+        }
+      );
       return webpackConfig;
     },
+  },
+  devServer(devServerConfig) {
+    // const base = devServerConfig.contentBase;
+    // devServerConfig.watchFiles = [
+    //   'src/**/*',
+    //   'public/**/*',
+    //   'config/**/*',
+    //   'scripts/**/*',
+    // ];
+    // devServerConfig.contentBase = [
+    //   base,
+    //   resolve(__dirname, './src/staticServices'),
+    // ];
+    return devServerConfig;
   },
 };
