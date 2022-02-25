@@ -1,39 +1,37 @@
 import { User, Post } from 'vo/UserVO';
 
 export function fetchUser(userId = 0): Promise<User> {
-  console.log('fetch user ' + userId + '...');
   return new Promise<User>((resolve) => {
     setTimeout(() => {
       console.log('fetched user ' + userId);
       switch (userId) {
         case 0:
           resolve({
-            name: 'Ringo Starr',
+            name: '0Ringo Starr',
           });
           break;
         case 1:
           resolve({
-            name: 'George Harrison',
+            name: '1George Harrison',
           });
           break;
         case 2:
           resolve({
-            name: 'John Lennon',
+            name: '2John Lennon',
           });
           break;
         case 3:
           resolve({
-            name: 'Paul McCartney',
+            name: '3Paul McCartney',
           });
           break;
         default:
           throw Error('Unknown user.');
       }
-    }, 2000 * Math.random());
+    }, 100 * Math.random());
   });
 }
 export function fetchPosts(userId = 0): Promise<Post[]> {
-  console.log('fetch posts for ' + userId + '...');
   return new Promise<Post[]>((resolve) => {
     setTimeout(() => {
       console.log('fetched posts for ' + userId);
@@ -42,15 +40,15 @@ export function fetchPosts(userId = 0): Promise<Post[]> {
           resolve([
             {
               id: 0,
-              text: 'I get by with a little help from my friends',
+              text: '0I get by with a little help from my friends',
             },
             {
               id: 1,
-              text: "I'd like to be under the sea in an octupus's garden",
+              text: "0I'd like to be under the sea in an octupus's garden",
             },
             {
               id: 2,
-              text: 'You got that sand all over your feet',
+              text: '0You got that sand all over your feet',
             },
           ]);
           break;
@@ -58,15 +56,15 @@ export function fetchPosts(userId = 0): Promise<Post[]> {
           resolve([
             {
               id: 0,
-              text: 'Turn off your mind, relax, and float downstream',
+              text: '1Turn off your mind, relax, and float downstream',
             },
             {
               id: 1,
-              text: 'All things must pass',
+              text: '1All things must pass',
             },
             {
               id: 2,
-              text: "I look at the world and I notice it's turning",
+              text: "1I look at the world and I notice it's turning",
             },
           ]);
           break;
@@ -74,15 +72,15 @@ export function fetchPosts(userId = 0): Promise<Post[]> {
           resolve([
             {
               id: 0,
-              text: 'Living is easy with eyes closed',
+              text: '2Living is easy with eyes closed',
             },
             {
               id: 1,
-              text: "Nothing's gonna change my world",
+              text: "2Nothing's gonna change my world",
             },
             {
               id: 2,
-              text: 'I am the walrus',
+              text: '2I am the walrus',
             },
           ]);
           break;
@@ -90,15 +88,15 @@ export function fetchPosts(userId = 0): Promise<Post[]> {
           resolve([
             {
               id: 0,
-              text: 'Woke up, fell out of bed',
+              text: '3Woke up, fell out of bed',
             },
             {
               id: 1,
-              text: 'Here, there, and everywhere',
+              text: '3Here, there, and everywhere',
             },
             {
               id: 2,
-              text: 'Two of us sending postcards, writing letters',
+              text: '3Two of us sending postcards, writing letters',
             },
           ]);
           break;

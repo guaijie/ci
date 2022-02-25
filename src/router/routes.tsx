@@ -13,15 +13,17 @@ export type RouteNode = {
   routes?: RouteNode[];
 };
 
-const modules = require.context('../page', true, /\.\/[\w-]+\/index.tsx$/);
+const modules = require.context('../page', true, /index\.tsx$/);
 
 const pageRoutes: RouteNode[] = [];
 modules.keys().forEach((key) => {
   pageRoutes.push({
-    path: key.replace(/\.(\/[\w-]+)\/index\.tsx$/, '$1'),
+    path: key.replace(/\.?((\/[^/]+)+)\/index\.tsx$/, '$1'),
     component: modules(key).default,
   });
 });
+
+console.log(modules.keys(), pageRoutes);
 
 const routes: RouteNode[] = [
   {

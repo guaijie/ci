@@ -32,7 +32,7 @@ const mapRoutes = (
           const redirect = prevpath ? prevpath + subRedirect : subRedirect;
           return (
             <Redirect
-              key={key || i}
+              key={key || path}
               from={path}
               to={redirect}
               {...rest}
@@ -44,7 +44,7 @@ const mapRoutes = (
             <Route
               {...nextRest}
               path={path}
-              key={key || i}
+              key={key || path}
               render={(props) => {
                 let childRoutes;
                 if (routes && routes.length > 0) {
@@ -71,6 +71,7 @@ const mapRoutes = (
 };
 
 export default function App() {
+  console.log('reload routes');
   return (
     <Router forceRefresh={!supportsHistory}>
       <GlobalGuard />

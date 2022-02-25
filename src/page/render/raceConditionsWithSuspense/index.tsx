@@ -44,8 +44,11 @@ export default function () {
 }
 
 const UserInfo: FunctionComponent<{ id: number }> = ({ id }) => {
-  const fetch = useMemo(() => suspenseFetch(fetchUser, id), [id]);
-  const user = fetch();
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    const userFetch = suspenseFetch(fetchUser, id);
+    setUser(userFetch);
+  }, [id]);
   return (
     <div>
       <h1>{user?.name}</h1>
@@ -54,12 +57,11 @@ const UserInfo: FunctionComponent<{ id: number }> = ({ id }) => {
 };
 
 const UserPosts: FunctionComponent<{ id: number }> = ({ id }) => {
-  const [postsFetch, setPostsFetch] = useState<(() => Post[]) | null>(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
   useEffect(() => {
     const postsFetch = suspenseFetch(fetchPosts, id);
-    setPostsFetch(postsFetch);
+    setPosts(postsFetch);
   }, [id]);
-  const posts = postsFetch && postsFetch();
   return (
     <ul>
       {posts?.map((post) => (

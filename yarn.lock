@@ -10402,14 +10402,14 @@ react-dev-utils@^11.0.2:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-0.0.0-experimental-4190a3458.tgz?cache=0&sync_timestamp=1614183349592&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dom%2Fdownload%2Freact-dom-0.0.0-experimental-4190a3458.tgz#7a382c396fa2952c8e86e2b40db02b5aa18d0660"
-  integrity sha1-ejgsOW+ilSyOhuK0DbArWqGNBmA=
+react-dom@^18.0.0-rc.0-next-e28a0db22-20220124:
+  version "18.0.0-rc.0-next-fe905f152-20220107"
+  resolved "https://registry.npmmirror.com/react-dom/-/react-dom-18.0.0-rc.0-next-fe905f152-20220107.tgz#22714f7c6e006e4728f87972df2774818022dcaa"
+  integrity sha512-tl+6q+8h9Vj7r4iI1jYQfLp4oHLC+f7tenqlYBw9eOyJ/SXJXzZ0Mp7QG1LYkK+oapO3vlj5I7ddnbnf8bcDJQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.0.0-experimental-4190a3458"
+    scheduler "0.21.0-rc.0-next-fe905f152-20220107"
 
 react-error-overlay@^6.0.9:
   version "6.0.9"
@@ -10545,10 +10545,10 @@ react-scripts@4.0.2:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react@^0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.npm.taobao.org/react/download/react-0.0.0-experimental-4190a3458.tgz?cache=0&sync_timestamp=1614183348358&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-0.0.0-experimental-4190a3458.tgz#7f3be065422480a24af2db6e36419cb4ef653e1b"
-  integrity sha1-fzvgZUIkgKJK8ttuNkGctO9lPhs=
+react@^18.0.0-rc.0-next-e28a0db22-20220124:
+  version "18.0.0-rc.0-next-fe905f152-20220107"
+  resolved "https://registry.npmmirror.com/react/-/react-18.0.0-rc.0-next-fe905f152-20220107.tgz#0dbc93be2b5ff5df4a353c74bbabfc97e47d8098"
+  integrity sha512-eePjzo6pCiwk9iDRYG0Hn5F0p9e7dlLGIys/eeLUCxByHP90rsXg/H/842S6ggBgarcfvRtDu8cAU7kxfLC4MA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -11095,10 +11095,10 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.0.0-experimental-4190a3458.tgz?cache=0&sync_timestamp=1614183350711&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.0.0-experimental-4190a3458.tgz#23f503e93d9d92e0582946737d3450ef045afa41"
-  integrity sha1-I/UD6T2dkuBYKUZzfTRQ7wRa+kE=
+scheduler@0.21.0-rc.0-next-fe905f152-20220107:
+  version "0.21.0-rc.0-next-fe905f152-20220107"
+  resolved "https://registry.npmmirror.com/scheduler/-/scheduler-0.21.0-rc.0-next-fe905f152-20220107.tgz#410f6df2f39d5543b00f98fbad7de6c9b374df89"
+  integrity sha512-+sY0WajWdMjoxbmHM8P6P1FKGw8sSVKKG/HthqTFQFPxVGbKLmV1BiFPaVF9gOyQWqmnLYSXJMN+4Bs5ZygsTw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
