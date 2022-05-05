@@ -1,83 +1,41 @@
 import {
   BrowserRouter as Router,
-  Switch,
+  MemoryRouter,
+  Routes,
   Route,
-  Redirect,
-  RouteComponentProps,
-  SwitchProps,
+  RoutesProps,
 } from 'react-router-dom';
 import routes, { RouteNode } from './routes';
 import GlobalGuard from 'components/GlobalGuard';
-// import { hot } from 'react-hot-loader/root';
-const supportsHistory = 'pushState' in window.history;
+import { resolve } from 'path';
 const TITLE = document.title;
-const mapRoutes = (
-  routes: RouteNode[],
-  prevProps?: RouteComponentProps,
-  switchProps?: SwitchProps
-) => {
-  return (
-    <Switch {...switchProps}>
-      {(routes || []).map((route, i) => {
-        const {
-          routes,
-          redirect: subRedirect,
-          key,
-          path: subPath,
-          ...rest
-        } = route;
-        const prevpath = prevProps?.match.path.replace(/\/$/, '');
-        const path = prevpath ? prevpath + subPath : subPath;
-        if (subRedirect) {
-          const redirect = prevpath ? prevpath + subRedirect : subRedirect;
-          return (
-            <Redirect
-              key={key || path}
-              from={path}
-              to={redirect}
-              {...rest}
-            ></Redirect>
-          );
-        } else {
-          const { component, title, ...nextRest } = rest;
-          return (
-            <Route
-              {...nextRest}
-              path={path}
-              key={key || path}
-              render={(props) => {
-                let childRoutes;
-                if (routes && routes.length > 0) {
-                  childRoutes = mapRoutes(routes, props, {
-                    location: props.location,
-                  });
-                } else {
-                  document.title = title || TITLE;
-                  childRoutes = null;
-                }
-                if (component) {
-                  const Component = component;
-                  return <Component {...props}>{childRoutes}</Component>;
-                } else {
-                  return childRoutes;
-                }
-              }}
-            />
-          );
-        }
-      })}
-    </Switch>
-  );
+const mapRoutes = (routes: RouteNode[], parent?: RouteNode) => {
+  return routes.map((route, i) => {
+    const { path, component: Comp, children, title, ...rest } = route;
+    const currentPath = resolve(parent?.path ?? '', path);
+    const redirect = parent?.redirect;
+    const routes = mapRoutes(children || [], { ...route, path: currentPath });
+    const index = currentPath === redirect;
+    console.log(currentPath, index, redirect);
+    return (
+      <Route
+        {...rest}
+        path={currentPath}
+        key={i}
+        index={index}
+        element={Comp && <Comp />}
+        children={routes}
+      />
+    );
+  });
 };
 
 export default function App() {
   console.log('reload routes');
   return (
-    <Router forceRefresh={!supportsHistory}>
-      <GlobalGuard />
-      {mapRoutes(routes)}
+    <Router>
+      {/* <GlobalGuard /> */}
+      <Routes>{mapRoutes(routes)}</Routes>
     </Router>
   );
 }
-
-// export default hot(App);

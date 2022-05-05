@@ -3,7 +3,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const { whenDev } = require('@craco/craco');
 const cracoLessPlugin = require('craco-less');
-const { resolve } = require('path');
 
 module.exports = {
   plugins: [
@@ -21,7 +20,6 @@ module.exports = {
   ],
   babel: {
     plugins: [
-      // ...whenDev(() => ['react-hot-loader/babel'], []),
       [
         'import',
         {
@@ -30,48 +28,27 @@ module.exports = {
           style: true,
         },
       ],
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-      // stage0
-      '@babel/plugin-proposal-function-bind',
       //stage1
-      '@babel/plugin-proposal-logical-assignment-operators',
-      ['@babel/plugin-proposal-optional-chaining', { loose: false }],
       ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }],
-      ['@babel/plugin-proposal-nullish-coalescing-operator', { loose: false }],
-      //stage2
-      '@babel/plugin-proposal-function-sent',
-      '@babel/plugin-proposal-numeric-separator',
-      '@babel/plugin-proposal-throw-expressions',
-      //stage3
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-json-strings',
     ],
   },
   webpack: {
-    // alias: {
-    //   ...whenDev(() => ({
-    //     'react-dom': '@hot-loader/react-dom',
-    //   })),
-    // },
+    alias: {
+      path: require.resolve('path-browserify'),
+    },
     plugins: [
       ...whenDev(
         () => [
-          // new BundleAnalyzerPlugin({
-          //   analyzerHost: 'localhost',
-          //   analyzerPort: '8080',
-          //   openAnalyzer: false,
-          // }),
+          new BundleAnalyzerPlugin({
+            analyzerHost: 'localhost',
+            analyzerPort: '9000',
+            openAnalyzer: false,
+          }),
         ],
         []
       ),
     ],
-    module: {
-      rules: [],
-    },
     configure: (webpackConfig /* , { env } */) => {
-      // if (env === 'development') {
-      //   webpackConfig.entry = ['react-hot-loader/patch', appIndexJs];
-      // }
       const options = webpackConfig.module.rules[1].oneOf[2].options;
       webpackConfig.module.rules[1].oneOf.splice(
         2,

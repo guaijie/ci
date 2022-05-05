@@ -5,9 +5,6 @@ export default class Easy extends Component<unknown, { count: number }> {
     count: 0,
   };
   handleClick = () => {
-    debugger;
-    this.setState(({ count }) => ({ count: count + 1 }));
-    debugger;
     this.setState(({ count }) => ({ count: count + 1 }));
   };
   render() {

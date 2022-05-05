@@ -2,22 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Launch Chrome",
       "request": "launch",
-      "name": "node",
-      // "program": "node",
-      "args": ["${fileBasename}"],
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "debug",
-      "program": "${workspaceFolder}/node_modules/@craco/craco/bin/craco.js",
-      "args": ["build"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**", "node_modules"]
+      "type": "pwa-chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }

@@ -13,13 +13,7 @@
 /* 
 需求：用户的信息渲染必须先于用户的 posts 渲染
 */
-import {
-  FunctionComponent,
-  Suspense,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { FunctionComponent, Suspense, useEffect, useState } from 'react';
 import { fetchUser, fetchPosts } from 'fakeApi/fakeUserApi';
 import { User, Post } from 'vo/UserVO';
 import { suspenseFetch } from 'utils/suspense-util';
@@ -32,7 +26,7 @@ export default function () {
   const [id, setId] = useState(0);
   return (
     <div>
-      <button onClick={() => setId(getNextId(id))}>next</button>
+      <button onClick={() => setId(1)}>next</button>
       <Suspense fallback={<h1>Loading userinfo...</h1>}>
         <UserInfo id={id} />
         <Suspense fallback={<h2>Loading posts...</h2>}>

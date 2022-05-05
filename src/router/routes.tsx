@@ -1,16 +1,15 @@
 // import Layout from 'layouts/Layout';
 import Login from 'components/Login';
 import NotFound from 'components/NotFound';
-import { ComponentType } from 'react';
-
+import { ReactNode, ComponentType } from 'react';
+console.log('3', '3');
 export type RouteNode = {
   path: string;
   component?: ComponentType;
-  redirect?: string;
-  key?: string;
   title?: string;
-  exact?: boolean;
-  routes?: RouteNode[];
+  caseSensitive?: boolean;
+  redirect?: string;
+  children?: RouteNode[];
 };
 
 const modules = require.context('../page', true, /index\.tsx$/);
@@ -23,24 +22,17 @@ modules.keys().forEach((key) => {
   });
 });
 
-console.log(modules.keys(), pageRoutes);
-
 const routes: RouteNode[] = [
   {
     path: '/login',
     component: Login,
-    exact: true,
   },
   {
     path: '/',
     // component: Layout,
-    routes: [
+    redirect: '/home',
+    children: [
       ...pageRoutes.filter((r) => r.component),
-      {
-        path: '/',
-        redirect: '/home',
-        exact: true,
-      },
       {
         path: '*',
         component: NotFound,

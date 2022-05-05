@@ -1,20 +1,19 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-@withRouter
-class GlobalGuard extends React.Component {
-  componentDidMount() {
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+function GlobalGuard() {
+  const navigate = useNavigate();
+  useEffect(() => {
     let paths = ['/login'];
     let pathname = this.props.location.pathname;
-    let { push } = this.props.history;
     if (paths.includes(pathname)) {
       return null;
     } else {
-      push(pathname);
+      navigate(pathname);
     }
-  }
-  render() {
-    return null;
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return null;
 }
 
 export default GlobalGuard;
